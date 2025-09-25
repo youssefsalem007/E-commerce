@@ -9,6 +9,9 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import {useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import { signIn } from 'next-auth/react'
+import { sign } from 'crypto'
+import Link from 'next/link'
 
 
 const Login = () => {
@@ -27,27 +30,35 @@ const Login = () => {
 
  async function handleLogin(values: LoginSchemaType){ 
 
-  try {
-    const {data} = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signin', values)
-    console.log(data);
 
-    toast.success(data.message ,{
+ const res = await signIn("credentials",{
+  email: values.email,
+  password: values.password,
+  redirect: false,
+  callbackUrl: "/"
+ })
+ console.log(res);
+ 
+  
+  if(res?.ok){
+    toast.success("login success" ,{
       position: "top-center",
-      duration: 4000,
+      duration: 3000,
     })
-    router.push('/')
-    
-  } catch (error) {
-    console.log(error);
 
-     toast.error(error.response?.data?.message ,{
-      position: "top-center",
-      duration: 4000,
-    })
-    
-    
+    window.location.href = res?.url || "/"
+
+
+
   }
-  console.log(values);
+      else{
+         toast.error(res?.error ,{
+      position: "top-center",
+      duration: 3000,
+    })
+
+    }
+    
 
  }
   return (
@@ -91,8 +102,10 @@ const Login = () => {
   />
 
     
-
-  <Button  className='w-full mt-5'>Register Now</Button>
+  <Link href={"/forget-password"} className='text-green-600'>
+  Forgot Password
+  </Link>
+  <Button  className='w-full mt-5'>Login</Button>
         </form>
  
 </Form>

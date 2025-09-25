@@ -2,6 +2,8 @@ import getSingleProduct from '@/apis/singleProduct'
 import React from 'react'
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'
+import AddBtnCard from '@/app/_components/AddBtnCard/AddBtnCard'
+import AddWishlistCard from '@/app/_components/AddWishlistCard/AddWishlistCard'
 
 
 const ProductDetails = async ({params }: {params : {id: string }}) => {
@@ -29,7 +31,14 @@ const ProductDetails = async ({params }: {params : {id: string }}) => {
       <p>{data.ratingsAverage} <i className='fa-solid fa-star text-yellow-300'></i></p>
 
     </div>
-    <Button variant="default" className='w-full'>Add To Cart</Button>
+
+    <div><AddBtnCard id={data.id}/></div>
+    <div className='mt-5'>
+    <AddWishlistCard id={data.id}/>
+    </div>
+    
+    
+
 
       </div>
 
