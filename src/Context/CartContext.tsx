@@ -1,5 +1,5 @@
 import { getUserCartAction } from '@/CartActions/getUserCart';
-import { Cart } from '@/types/cart.type';
+import { Cart, ProductCart } from '@/types/cart.type';
 import React, { createContext, useEffect, useState } from 'react'
 import { addToCartAction } from '@/CartActions/addToCart'; 
 import { removeCartItemAction } from '@/CartActions/removeCartItem';
@@ -10,12 +10,11 @@ import { clearCartAction } from '@/CartActions/clearCart';
  export const CartContext = createContext({})
 
 const CartContextProvider = ({children} : {children : React.ReactNode}) => {
- const [numOfCart , setNumOfCart] = useState(0)
-  const [totalCartPrice , setTotalCartPrice] = useState(0)
-   const [products , setProducts] = useState([])
-    const [isLoading , setIsLoading] = useState(false)
-    const [cartId , setCartId] = useState("")
-
+ const [products, setProducts] = useState<ProductCart[]>([]);
+const [numOfCart, setNumOfCart] = useState<number>(0);
+const [totalCartPrice, setTotalCartPrice] = useState<number>(0);
+const [cartId, setCartId] = useState<string>("");
+const [isLoading, setIsLoading] = useState<boolean>(false);
     async function addProductToCart(id:string){
 
       try {
