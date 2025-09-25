@@ -7,7 +7,7 @@ import AddWishlistCard from '@/app/_components/AddWishlistCard/AddWishlistCard'
 
 
 const ProductDetails = async ({params }: {params : {id: string }}) => {
-  const {id} = await params
+  const {id} =  params
 
   const data = await getSingleProduct(id)
 
