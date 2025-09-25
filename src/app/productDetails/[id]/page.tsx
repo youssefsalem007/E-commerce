@@ -6,10 +6,10 @@ import AddBtnCard from '@/app/_components/AddBtnCard/AddBtnCard'
 import AddWishlistCard from '@/app/_components/AddWishlistCard/AddWishlistCard'
 
 
-const ProductDetails = async ({params }: {params : {id: string }}) => {
-  const {id} =  params
+const ProductDetails = async ({ params }: any) => {
+  const { id } = params;
+  const data = await getSingleProduct(id);
 
-  const data = await getSingleProduct(id)
 
   console.log(data);
   
