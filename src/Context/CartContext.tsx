@@ -6,8 +6,20 @@ import { removeCartItemAction } from '@/CartActions/removeCartItem';
 import { updateCartAction } from '@/CartActions/updateCart';
 import { clearCartAction } from '@/CartActions/clearCart';
 
-
- export const CartContext = createContext({})
+interface CartContextType {
+  isLoading: boolean;
+  numOfCart: number;
+  totalCartPrice: number;
+  products: ProductCart[];
+  cartId: string;
+  addProductToCart: (id: string) => Promise<any>;
+  removeCartItem: (id: string) => Promise<any>;
+  updateCart: (id: string, count: number) => Promise<any>;
+  clearCart: () => Promise<any>;
+  afterPayment: () => void;
+  getUserCart?: () => Promise<void>;
+}
+ export const CartContext = createContext<CartContextType>({} as CartContextType);
 
 const CartContextProvider = ({children} : {children : React.ReactNode}) => {
  const [products, setProducts] = useState<ProductCart[]>([]);

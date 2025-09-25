@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 const Cart = () => {
  
-  const {isLoading , products , totalCartPrice , removeCartItem ,updateCart,clearCart}  = useContext(CartContext)
+  const {isLoading, products , totalCartPrice , removeCartItem ,updateCart,clearCart}  = useContext(CartContext)
 
  async function removeItem(id:string){
   const data = await removeCartItem(id)

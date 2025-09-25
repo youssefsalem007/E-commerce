@@ -12,8 +12,8 @@ type Props = {}
  
 const Navbar = (props: Props) => {
   const { data: session, status } = useSession()
-  const { numOfCart } = useContext(CartContext)
-  const { numOfWishlist } = useContext(WishlistContext) 
+   const { numOfCart } = useContext(CartContext) as any
+  const { numOfWishlist } = useContext(WishlistContext) as any
  
   return (
     <div className='bg-slate-300 py-5'>

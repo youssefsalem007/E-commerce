@@ -7,7 +7,7 @@ const Brands = async() => {
   return (
     <div className='w-full md:w-[80%] mx-auto py-10 px-0'>
 <div className="flex flex-wrap justify-center">
-  {data.map((brand, idx) => (
+  {data.map((brand:any, idx:number) => (
     <div key={idx} className="w-full md:w-1/2 p-2 flex justify-center">
       <Image src={brand.image} alt="" width={200} height={200} />
     </div>
